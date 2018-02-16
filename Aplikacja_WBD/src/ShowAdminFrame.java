@@ -44,7 +44,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 	
 	public ShowAdminFrame()
 	{
-		super("Wyœwietl");
+		super("Show");
 		Dimension dim = new Dimension(1380, 760);
 		setPreferredSize(dim);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,7 +70,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 		inBi = false;
 		inOp = false;
 		inPr = false;
-		JLabel tab = new JLabel("Wybierz tabelê: ");
+		JLabel tab = new JLabel("Wybierz tabelÃª: ");
 		
 		
 		String[] tables = new String[] {"Operatorzy", "Biura", "Pracownicy"};
@@ -80,7 +80,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 		childPanel.add( new JLabel("    Wybierz pole do sortowania:") );
 		childPanel.add(listTab, SwingConstants.CENTER);
 		childPanel.add(tab, SwingConstants.CENTER);
-		//childPanel.add( new JLabel("    Wybierz pole do sortowania:") );
+	
 		sAdminPanel.add(childPanel, BorderLayout.PAGE_START);
 		
 		childPanel2 = new JPanel();
@@ -88,11 +88,11 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 		
 		JLabel sort = new JLabel("Sortuj: ");
 		
-		JButton sortDesc = new JButton("Malej¹co");
+		JButton sortDesc = new JButton("MalejÄ…co");
 		sortDesc.setActionCommand("SortujM");
 		sortDesc.addActionListener(this);
 		
-		JButton sortAsc = new JButton("Rosn¹co");
+		JButton sortAsc = new JButton("RosnÄ…co");
 		sortAsc.setActionCommand("SortujR");
 		sortAsc.addActionListener(this);
 		
@@ -113,8 +113,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 		listTab.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
-			{
-				//listTab = (JComboBox<String>) e.getSource();
+			{				
 				chosenTab = (String) listTab.getSelectedItem();
 
 		        jdbc = new JDBC();
@@ -133,7 +132,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 	protected void createTable()
 	{
 		
-        //if (selectedTab.equals("Biura"))
 		 if (model != null)
 		        childPanel3.removeAll();
 		 
@@ -186,7 +184,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
             		row[8] = Integer.toString(jdbc.rset.getInt(9));
             		model.addRow(new Object[]{row[0], row[1], row[2], row[3],row[4], row[5],row[6], row[7], row[8]});
 				}
-            table.getColumnModel().getColumn(0).setPreferredWidth(70);	///dopisz szerokoœci kolumn
+            table.getColumnModel().getColumn(0).setPreferredWidth(70);	
             table.getColumnModel().getColumn(1).setPreferredWidth(120);
             table.getColumnModel().getColumn(2).setPreferredWidth(100);
             table.getColumnModel().getColumn(3).setPreferredWidth(90);
@@ -200,7 +198,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
     		
    
     		sAdminPanel.add(childPanel3, BorderLayout.CENTER);
-    		//childPanel3.repaint();
     		
     		if (iflistcol)
     			{
@@ -214,13 +211,12 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
     		
     			child = new JPanel(); 
     			child.setLayout(new GridLayout(10,2));   
-    			//childPanel.add( new JLabel("    Wybierz pole do sortowania:") );
     			listCol = new JComboBox<String>(columns);
     			iflistcol = true;
     			childPanel.add(listCol);
     			childPanel.revalidate();
     			childPanel.repaint();  
-    			//sAdminPanel.add(childPanel, BorderLayout.WEST);
+    		
     		}
     		
     			listCol.addActionListener(new ActionListener()
@@ -231,15 +227,13 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
     				}
     			
     		});
-    		
-    		//JLabel col = new JLabel("Wybierz atrybut po którym chcesz sortowaæ: ");  		
-        	
+    				      	
         
            } 			     
 
 		catch(SQLException e1)
 		{
-			JOptionPane.showMessageDialog(null, "Wysy³anie zapytania do bazy nie powiod³o siê.");
+			JOptionPane.showMessageDialog(null, "WysyÅ‚anie zapytania do bazy nie powiodÅ‚o siÄ™.");
 			e1.printStackTrace();
 		}
 				          			           
@@ -265,7 +259,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
       
            try
            {
-        	   //jdbc.startJDBC();
         	   jdbc.rset = jdbc.stat.executeQuery(query);
 			
         	   for (int i = 1; i<5; i++ )
@@ -294,7 +287,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
             table.getColumnModel().getColumn(3).setPreferredWidth(140);
     		childPanel3.add(table,SwingConstants.CENTER);
     		sAdminPanel.add(childPanel3, BorderLayout.CENTER);
-    		//childPanel3.repaint();
+   
     		if (iflistcol)
 			{
     			childPanel.remove(listCol);
@@ -307,14 +300,14 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 
 			child = new JPanel(); 
 			child.setLayout(new GridLayout(10,2));   
-			//child.add( new JLabel("    Wybierz pole do sortowania:") );
+		
 			listCol = new JComboBox<String>(columns);
 			iflistcol = true;
-			//child.add(listCol);
+		
 			childPanel.add(listCol);
 			childPanel.revalidate();
 			childPanel.repaint();  
-			//sAdminPanel.add(child, BorderLayout.WEST);
+		
 		}
 		
 			listCol.addActionListener(new ActionListener()
@@ -330,7 +323,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 
 		catch(SQLException e1)
 		{
-			JOptionPane.showMessageDialog(null, "Wysy³anie zapytania do bazy nie powiod³o siê.");
+			JOptionPane.showMessageDialog(null, "WysyÅ‚anie zapytania do bazy nie powiodÅ‚o siÄ™.");
 			e1.printStackTrace();
 		}
 	
@@ -389,7 +382,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 	            		model.addRow(new Object[]{row[0], row[1], row[2], row[3],row[4], row[5],row[6], row[7], row[8], row[9], row[10], row[11], row[12]});
 					}
 	            
-	            table.getColumnModel().getColumn(0).setPreferredWidth(110);	///dopisz szerokoœci kolumn
+	            table.getColumnModel().getColumn(0).setPreferredWidth(110);
 	            table.getColumnModel().getColumn(1).setPreferredWidth(75);
 	            table.getColumnModel().getColumn(2).setPreferredWidth(80);
 	            table.getColumnModel().getColumn(3).setPreferredWidth(100);
@@ -407,7 +400,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 	    		sAdminPanel.add(childPanel3, BorderLayout.CENTER);
 	    		if (iflistcol)
     			{
-    				//sAdminPanel.remove(child);
 	    			childPanel.remove(listCol);
     				iflistcol = false;
     			}
@@ -418,14 +410,14 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
  
     			child = new JPanel(); 
     			child.setLayout(new GridLayout(10,2));   
-    			//child.add( new JLabel("    Wybierz pole do sortowania:") );
+
     			listCol = new JComboBox<String>(columns);
     			iflistcol = true;
-    			//child.add(listCol);
+
     			childPanel.add(listCol);
     			childPanel.revalidate();
     			childPanel.repaint();  
-    			//sAdminPanel.add(child, BorderLayout.WEST);
+
     		}
     		
     			listCol.addActionListener(new ActionListener()
@@ -442,7 +434,7 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
 	
 			catch(SQLException e1)
 			{
-				JOptionPane.showMessageDialog(null, "Wysy³anie zapytania do bazy nie powiod³o siê.");
+				JOptionPane.showMessageDialog(null, "WysyÅ‚anie zapytania do bazy nie powiodÅ‚o siÄ™.");
 				e1.printStackTrace();
 			}
         }
@@ -470,9 +462,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
      		
      		sortD = true;	
      		sortA = false;
- 
-     		System.out.println("dfs"+chosenCol);
-     		System.out.println("dfs"+chosenTab);
      		createTable();
      		break;
      	}
@@ -482,9 +471,6 @@ public class ShowAdminFrame extends JFrame implements ActionListener{
   
      		sortA = true;
      		sortD = false;
-     	//	chosenCol = (String) listCol.getSelectedItem();
-     		System.out.println("col "+chosenCol);
-     		System.out.println("tab "+chosenTab);
      		createTable();
      		break;
      	}
